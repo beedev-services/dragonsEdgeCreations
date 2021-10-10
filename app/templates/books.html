@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% for b in books %}
+        <h2>Books</h2>
+        <div class="row">
+            <img src="{{b.bookImg}}" alt="{{b.bookName}}" class='bookImg'>
+            <h3>{{b.bookName}}</h3>
+            <p class='bookDescription'>{{b.description}}</p>
+            <h3>{{b.price}}</h3>
+        </div>
+    {% endfor %}
+
+{%endblock%}

@@ -1,0 +1,72 @@
+@import 'base.less';
+
+body {
+    background-color: @bg;
+    .flexcolumn();
+
+    header {
+        .background();
+        width: 95%;
+        .flexcolumn();
+        .border02();
+
+        .border {
+            .border01();
+            margin: .2em;
+        }
+
+        nav {
+            .flexrow();
+            width: 95%;
+            justify-content: space-evenly;
+
+            a {
+                .a();
+            }
+        }
+    };
+    main {
+        .flexcolumn();
+        width: 95%;
+
+        .header {
+            width: 75%;
+            .flexcolumn();
+        }
+        .column {
+            width: 75%;
+            .flexcolumn();
+        }
+        .row {
+            .flexrow();
+            width: 75%;
+            justify-content: space-between;
+            margin: 1em;
+
+            .bookImg {
+                max-width: 200px;
+            }
+            .bookDescription {
+                width: 30%;
+                margin: .5em;
+            }
+            h3 {
+                width: 20%;
+                text-align: center;
+                margin: .5em;
+            }
+        }
+    }
+    footer {
+        .background();
+        .flexrow();
+        width: 95%;
+        .border02();
+
+        .border {
+            width: 200px;
+            .border01();
+            margin: .2em;
+        }
+    }
+}

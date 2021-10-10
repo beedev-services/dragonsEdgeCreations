@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
+    <title>Dragons Edge Creations</title>
+</head>
+<body>
+    <header>
+            <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/books/">Books</a>
+            <a href="/art/">Art</a>
+            <a href="/blog/">Blog</a>
+            <a href="/services/">Services</a>
+            <a href="/contact/">Contact</a>
+            <a href="/theAdmin"><img src="{% static 'images/dragonIcon.jpg'%}" alt="Logo Image" id="admin"></a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+
+        {% endblock content %}
+    </main>
+    <footer>
+        <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+    </footer>
+</body>
+</html>

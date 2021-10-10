@@ -1,0 +1,52 @@
+@bg: #e0dede;
+@blue01: #313981;
+@blue02: #221D46;
+@links: #D7D8DA;
+@wings: #B198F4;
+@dragBody: #0252E9;
+@dragBelly: #AFEBA5;
+
+.background {
+    background-image: linear-gradient(to bottom right, @blue01, @blue02);
+    // background-repeat: no-repeat;
+}
+.border01 {
+    border: 3px groove @bg;
+}
+.border02 {
+    border: 5px groove @dragBelly;
+}
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.altrow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.altcolumn {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.a {
+    text-decoration: none;
+    color: @links;
+    padding: .5em;
+    font-size: 1.2em;
+
+    #admin {
+        width: 50px;
+    }
+}

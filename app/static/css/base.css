@@ -1,0 +1,42 @@
+.background {
+  background-image: linear-gradient(to bottom right, #313981, #221D46);
+}
+.border01 {
+  border: 3px groove #e0dede;
+}
+.border02 {
+  border: 5px groove #AFEBA5;
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.altrow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.altcolumn {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.a {
+  text-decoration: none;
+  color: #D7D8DA;
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+.a #admin {
+  width: 50px;
+}

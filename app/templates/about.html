@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h2>About</h2>
+    <div class="column">
+        <h3>YOU</h3>
+        <p>Do you care about a young child age 4 - 7? Do you want them to feel cared for? Are you a parent,grandparent, aunt, uncle, sister, brother, teacher, counselor, librarian, therapist, or psychiatrist? Zag is a caring tree frog that with interact with your child. He shows how much he cares and puts the reader right in the story. It is an interactive story. Zag helps children feel good about themselves. Try it and watch them blossom.</p>
+        <p>Do you enjoy getting lost in a story and a different world? Do you love fantasy? Are you looking for a new      story to read and relax? Jar child is a unique fantasy story about a society where children grow up on campus in jars. The main character is a child coming to age of testing to determine if she is promoted and graduates to living outside the jar. You’ll learn about her life, training, and challenges. Stay tuned for more details as this is a work in progress.</p>
+        <p>Are you someone that enjoys abstract art or landscape photography? You will enjoy our art as it is as unique as you are. There is something for everyone because everyone sees something different. It all comes from your mind. Check out our art page and you will be thrilled.</p>
+        <p>If you are a technical communicator or learning and development leader, then you have come to the right place to find help achieving growth with your employees with efficient and easy to understand documents and successfully trained employees. Reach out to us so we can help solve your pain points.  We are here for you and can work remotely socially distancing without ever having to step into your office.</p>
+    </div>
+    <div class="column">
+        <h3>CAMILLE EDGE</h3>
+        <p>Camille Edge grew up in South Carolina and lived in Boston for many years later moving back. She is not only a  writer and artist, but also a computer geek with many years in the IT, training, and technical writing fields during the day while at night emotions and feelings transform into art.</p>
+        <p>She is a cross-functional collaborator with recognized abilities in technical communication, curriculum development, training, facilitating, leadership, and user testing. She thrives as a subject matter expert and grasps  all angles of challenging situations.</p>
+        <p>Camille helps technical communication managers and learning and development leaders at organizations virtually achieve growth with their employees by creating efficient and easy to understand documents and successfully training employees by creating informative and engaging content.</p>
+        <p>She volunteered her time as a Technical Consultant & Web Developer for two non-profits as well as a project manager for a Wonsulting project. Camille has launched Dragons Edge Creations LLC.</p>
+    </div>
+    <div class="column">
+        <h3>MY ART</h3>
+        <p>Camille Edge has enjoyed creating abstract art and taking photographs for years. Her pieces express the feelings and emotions of everyday life. Her art can be viewed from any direction, angle, or distance. What you see up close may change as you move away. There is no top or bottom. Turn the images and see what comes to mind.  Everyone has a different perspective. Let your imagination run free.</p>
+        <p>She uses a pencil, pen, marker, and watercolors in her art. Camille enjoys landscape photography by finding different angles and perspectives.</p>
+        <p>Camille is a poet and writer. She is preparing a children’s book for publication and writing a fantasy book. She co-authored a nonfiction Climate Report while in college.</p>
+    </div>
+    <div class="column">
+        <h3>UPCOMING ART SHOWS</h3>
+        {% if events == False %}
+            <p>{{nullEvents}}</p>
+        {% endif %}
+    </div>
+    <div class="column">
+        <h3>PREVIOUS ART SHOWS</h3>
+        <ul>
+            {% for pe in pastEvents %}
+            <li>{{pe.date}} - {{pe.details}}, {{pe.location}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+{%endblock%}
