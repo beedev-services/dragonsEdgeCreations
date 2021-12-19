@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<nav>
+    <a href="/theAdmin/products/">Products</a>
+    <a href="/theAdmin/events/">Events</a>
+    <a href="/theAdmin/customers/">Customers</a>
+    <a href="#">Edit Profile</a>
+    <a href="#">Login to Blog</a>
+    <button><a href="/logout/">Logout</a></button>
+</nav>
+<div>
+    {% if messages %}
+    <section class='messages'>
+        {% for message in messages %}
+        <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    </section>
+    {% endif %}
+</div>
+<form action='/theAdmin/event/{{event.id}}/update/' method='post'>
+    {% csrf_token %}
+    <section>
+        <label for="eventName">EventName: </label>
+        <input type="text" name="eventName" value='{{event.eventName}}'>
+    </section>
+    <section>
+        <label for="date">Event Date: </label>
+        <input type="date" name="date" value='{{event.date}}'>
+    </section>
+    <section>
+        <label for="details">Details: </label>
+        <textarea name="details"cols="30" rows="10">{{event.details}}</textarea>
+    </section>
+    <section>
+        <label for="location">Location: </label>
+        <input type="text" name="location" value='{{event.location}}'>
+    </section>
+    <section>
+        <label for="eventStatus">Current or Past Event: </label>
+        <span>Current Value: {% if event.eventStatus == 0 %}
+            Upcoming Event
+        {% else %}
+            Past Event
+        {% endif %}</span>
+        <select name="eventStatus">
+            <option value="0">Upcoming Event</option>
+            <option value="1">Past Event</option>
+        </select>
+    </section>
+    <button>Update Event</button>
+</form>
+    {%endblock%}

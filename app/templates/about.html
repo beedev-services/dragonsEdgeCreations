@@ -24,16 +24,34 @@
     </div>
     <div class="column">
         <h3>UPCOMING ART SHOWS</h3>
-        {% if events == False %}
-            <p>{{nullEvents}}</p>
+        <ul>
+            {% if currentEvents %}
+            {% for events in currentEvents | sort(attribute='date') %}
+                <li>{{events.date}} - {{events.location}}
+                    <ul>
+                        <li>{{events.details}}</li>
+                    </ul>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>Events Coming Soon</li>
         {% endif %}
+        </ul>
     </div>
     <div class="column">
         <h3>PREVIOUS ART SHOWS</h3>
         <ul>
-            {% for pe in pastEvents %}
-            <li>{{pe.date}} - {{pe.details}}, {{pe.location}}</li>
-            {% endfor %}
+            {% if pastEvents %}
+                {% for events in pastEvents | sort(attribute='date') %}
+                    <li>{{events.date}} - {{events.location}}
+                        <ul>
+                            <li>{{events.details}}</li>
+                        </ul>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>Adding Past Events Soon</li>
+            {% endif %}
         </ul>
     </div>
 

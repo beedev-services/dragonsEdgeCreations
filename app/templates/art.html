@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<h2>Under Construction</h2>
-<img src="{% static 'images/logo.jpg' %}" alt="">
-
+<table>
+    {% for art in arts | sort(attribute='prodName') %}
+        <tr>
+            <td>{% if art.prodimg.prodimg == 'default.jpg' %}
+                Image Coming Soon
+            {% else %}
+            <img src="{{art.prodimg.prodimg.url}}" alt="art.prodimg.imageName}}">
+            {% endif %}</td>
+            <th>{{art.prodName}}</th>
+            <td>{{art.illustrator}}</td>
+            <td>{{art.prodPrice}}</td>
+            <td><button><a href="/art/{{art.id}}/view">View More</a></button></td>
+        </tr>
+    {% endfor %}
+</table>
 {%endblock%}

@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .defaultData import *
-
-# ----------------------------------- Unprotected Pages -----------------------------------
-
-# ------------------------- Main Landing Pages -------------------------
+from .models import *
+import bcrypt
 
 # ---------- Index ----------
 
@@ -14,33 +11,31 @@ def index(request):
 # ---------- About ----------
 
 def about(request):
-    noEvents = "Currently, we do not have shows scheduled. Stay tuned!"
-    # currentEvents = events
-    # pastEvents = pastEvents
+    currentEvents = Event.objects.filter(eventStatus=0)
+    pastEvents = Event.objects.filter(eventStatus=1)
     context = {
-        'nullEvents': noEvents,
-        'events': currentEvents,
+        'currentEvents': currentEvents,
         'pastEvents': pastEvents,
     }
-    print(currentEvents)
-    print(pastEvents)
     return render(request, 'about.html', context)
 
 # ---------- Books ----------
 def books(request):
+    books = Product.objects.filter(prodType=0)
     context = {
-        'books': theBooks,
+        'books': books,
     }
     print(theBooks)
     return render(request, 'books.html', context)
 
 # ---------- Art ----------
 def art(request):
-    return render(request, 'art.html')
+    arts = Product.objects.filter(prodType=1)
+    context = {
+        'arts': arts,
+    }
+    return render(request, 'art.html', context)
 
-# ---------- Blog ----------
-def blog(request):
-    return render(request, 'blog.html')
 
 # ---------- Services ----------
 def services(request):
@@ -51,41 +46,53 @@ def contact(request):
     return render(request, 'contact.html')
 
 # ---------- Admin ----------
-def admin(request):
-    return render(request, 'admin.html')
+def theAdmin(request):
+    if 'user_id' not in request.session:
+        messages.error(request, 'Please Log in to view')
+        return redirect('/login/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        mediums = Format.objects.all().values()
+        langs = Language.objects.all().values()
+        context = {
+            'user': user,
+            'mediums': mediums,
+            'langs': langs,
+        }
+    return render(request, 'admin/admin.html', context)
 
-# ------------------------- Landing Pages -------------------------
-
-
-# ----------------------------------- Protected Pages -----------------------------------
-
-# ------------------------- Create Routes -------------------------
-
-# ---------- Login ----------
 def login(request):
-    pass
+    user = User.objects.filter(username = request.POST['username'])
+    if user:
+        userLogin = user[0]
+        if bcrypt.checkpw(request.POST['password'].encode(), userLogin.password.encode()):
+            request.session['user_id'] = userLogin.id
+            return redirect('/theAdmin/')
+        messages.error(request, 'Invalid Credentials')
+        return redirect('/login/')
+    messages.error(request, 'That Username is not in our system, please register for an account')
+    return redirect('/login/')
 
-# ---------- Register ----------
 def register(request):
-    pass
+    if request.method == 'GET':
+        return redirect('/')
+    errors = User.objects.validate(request.POST)
+    if errors:
+        for err in errors.values():
+            messages.error(request, err)
+        return redirect('/')
+    hashedPw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+    newUser = User.objects.create(
+        firstName = request.POST['firstName'],
+        lastName = request.POST['lastName'],
+        email = request.POST['email'],
+        username = request.POST['username'],
+        password = hashedPw
+    )
+    request.session['user_id'] = newUser.id
+    return redirect('/theAdmin/')
 
-# ---------- Create Book ----------
-def createBook(request):
-    pass
-
-# ------------------------- Landing Pages -------------------------
-
-# ---------- Login Redirect ----------
-def loginPost(request):
-    pass
-
-# ---------- Register Redirect ----------
-def registerPost(request):
-    pass
-
-# ------------------------- Update Routes -------------------------
-
-# ------------------------- Delete Routes -------------------------
-
-# ------------------------- Form Routes -------------------------
-
+def logout(request):
+    request.session.clear()
+    messages.error(request, 'You have been logged out')
+    return redirect('/')

@@ -8,10 +8,10 @@ urlpatterns = [
     path('about/', views.about),
     path('books/', views.books),
     path('art/', views.art),
-    path('blog/', views.blog),
     path('services/', views.services),
     path('contact/', views.contact),
-    path('theAdmin/', views.admin),
+    path('theAdmin/', views.theAdmin),
+    path('logout/', views.logout),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

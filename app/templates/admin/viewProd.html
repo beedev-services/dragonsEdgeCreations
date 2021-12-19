@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<nav>
+    <a href="/theAdmin/products/">Products</a>
+    <a href="/theAdmin/events/">Events</a>
+    <a href="/theAdmin/customers/">Customers</a>
+    <a href="#">Edit Profile</a>
+    <a href="#">Login to Blog</a>
+    <button><a href="/logout/">Logout</a></button>
+</nav>
+<div>
+    {% if messages %}
+    <section class='messages'>
+        {% for message in messages %}
+        <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    </section>
+    {% endif %}
+</div>
+<div class="column">
+    <h1>{{prod.prodName}}</h1>
+    <div class="row">
+        <span>Author: {{prod.author}}</span>
+        <span>Illustrator: {{prod.illustrator}}</span>
+    </div>
+    <p>{{prod.prodDetails}}</p>
+    <div class="row">
+        <span>{% if prod.prodType == 0 %}
+            Book
+        {% else %}
+            Art
+        {% endif %}</span>
+        <span>{% if prod.prodMedium_id == medium.id %}
+            {{medium.medium}}
+        {% endif %}</span>
+        <span>{% if prod.prodLang_id == lang.id %}
+            {{lang.lang}}
+        {% endif %}</span>
+    </div>
+    <div class="row">
+        <span>${{prod.prodPrice}}</span>
+        <span>Current Quantity: {{prod.quantity}}</span>
+        <span>ID: {{prod.isbn}}</span>
+    </div>
+</div>
+    <h1>Edit Product</h1>
+    <div class="row">
+        <div class="column">
+            <h2>Current Values</h2>
+            <form action="/theAdmin/product/{{product.id}}/update/">
+                {% csrf_token %}
+                <section>
+                    <label for="prodName">Item Name: <span>**</span></label>
+                    <input type="text" name="prodName" value='{{prod.prodName}}'>
+                </section>
+                <section>
+                    <label for="prodDetails">Item Details: <span>**</span></label>
+                    <textarea name="prodDetails" cols="30" rows="10">{{prod.prodDetails}}</textarea>
+                </section>
+                <section>
+                    <label for="author">Author: </label>
+                    <input type="text" name="author" value='{{prod.author}}'>
+                </section>
+                <section>
+                    <label for="illustrator">Illustrator (of book or art): </label>
+                    <input type="text" name="illustrator" value='{{prod.illustrator}}'>
+                </section>
+                <section>
+                    <label for="isbn">Item Number: </label>
+                    <input type="text" name="isbn" value='{{prod.isbn}}'>
+                </section>
+                <section>
+                    <label for="quantity">Quantity (default is 1): </label>
+                    <input type="text" name="quantity" value='{{prod.quantity}}'>
+                </section>
+                <section>
+                    <label for="prodPrice">Item Price (default is TBD):</label>
+                    <input type="text" name="prodPrice" value='{{prodPrice}}'>
+                </section>
+                <section>
+                    <label for="prodType">Book or Art (default is book): </label>
+                    <span>Current Selection: {% if prod.prodType == 0 %}
+                        Book
+                    {% else %}
+                        Art
+                    {% endif %}</span>
+                    <select name="prodType">
+                        <option>Please Select</option>
+                        <option value="0">Book</option>
+                        <option value="1">Art</option>
+                    </select>
+                </section>
+                <section>
+                    <label for="prodMedium">Item format: </label>
+                    <span>Current Selection: {{prod.prodMedium}}</span>
+                    <select name="prodMedium">
+                        <option>Please Select</option>
+                        {% for medium in mediums %}
+                            <option value="{{medium.id}}">{{medium.medium}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <section>
+                    <label for="lang">Book Language: </label>
+                    <span>Current Selection: {{prod.lang}}</span>
+                    <select name="lang">
+                        <option>Please Select</option>
+                        {% for lang in langs %}
+                            <option value="{{lang.id}}">{{lang.lang}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <button>Add Item</button>
+            </form>
+        </div>
+        <div class="column">
+            <h2>Add Image</h2>
+            <h3>All Items are created 1st with a default image</h3>
+            <form action="/theAdmin/product/{{product.id}}/addImage/" method='post' enctype="multipart/form-data">
+                {% csrf_token %}
+                <section>
+                    <label for="imageName">Image Name:</label>
+                    <input type="text" name="imageName">
+                </section>
+                <section>
+                    <label for="prodimg">Upload Image</label>
+                    <input type="file" name="prodimg" required>
+                </section>
+                <button>Add Image</button>
+            </form>
+        </div>
+    </div>
+    {%endblock%}

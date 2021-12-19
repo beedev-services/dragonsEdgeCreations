@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<nav>
+    <a href="/theAdmin/products/">Products</a>
+    <a href="/theAdmin/events/">Events</a>
+    <a href="/theAdmin/customers/">Customers</a>
+    <a href="#">Edit Profile</a>
+    <a href="#">Login to Blog</a>
+    <button><a href="/logout/">Logout</a></button>
+</nav>
+<div>
+    {% if messages %}
+    <section class='messages'>
+        {% for message in messages %}
+        <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    </section>
+    {% endif %}
+</div>
+<table>
+    <tr>
+        <th>Event Name</th>
+        <th>Event Date</th>
+        <th>Upcoming Event</th>
+        <th>Past Event</th>
+        <th>Actions</th>
+    </tr>
+    {% for event in events %}
+        <tr>
+            <td>{{event.eventName}}</td>
+            <td>{{event.date}}</td>
+            <td>{% if event.eventStatus == 0 %}
+                Yes
+            {% endif %}</td>
+            <td>{% if event.eventStatus == 1 %}
+                Yes
+            {% endif %}</td>
+            <td><a href="/theAdmin/event/{{event.id}}/edit/">Edit Event</a> | <a href="/theAdmin/event/{{event.id}}/delete/">Delete Event</a></td>
+        </tr>
+    {% endfor %}
+</table>
+    {%endblock%}

@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    {% for b in books %}
-        <h2>Books</h2>
-        <div class="row">
-            <img src="{{b.bookImg}}" alt="{{b.bookName}}" class='bookImg'>
-            <h3>{{b.bookName}}</h3>
-            <p class='bookDescription'>{{b.description}}</p>
-            <h3>{{b.price}}</h3>
-        </div>
-    {% endfor %}
-
+    <table>
+        {% for book in books | sort(attribute='prodName') %}
+            <tr>
+                <td>{% if book.prodimg.prodimg == 'default.jpg' %}
+                    Image Coming Soon
+                {% else %}
+                <img src="{{book.prodimg.prodimg.url}}" alt="{{book.prodimg.imageName}}">
+                {% endif %}</td>
+                <th>{{book.prodName}}</th>
+                <td>{{book.author}}</td>
+                <td>{{book.prodPrice}}</td>
+                <td><button><a href="/books/{{book.id}}/view">View Details</a></button></td>
+            </tr>
+        {% endfor %}
+    </table>
 {%endblock%}
