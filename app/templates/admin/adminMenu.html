@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block adminMenu %}
+    <nav>
+        <a href="/theAdmin/products/">Products</a>
+        <a href="/theAdmin/events/">Events</a>
+        <a href="/uc/">Customers</a>
+        <a href="/uc/">Admin Users</a>
+        <a href="uc">Edit Profile</a>
+        <a href="uc">Login to Blog</a>
+        <button><a href="/logout/">Logout</a></button>
+    </nav>
+    {% endblock adminMenu %}
+</body>
+</html>

@@ -1,19 +1,49 @@
-{% extends "base.html" %}
 {% load static %}
-{% block content %}
-<table>
-    {% for art in arts | sort(attribute='prodName') %}
-        <tr>
-            <td>{% if art.prodimg.prodimg == 'default.jpg' %}
-                Image Coming Soon
-            {% else %}
-            <img src="{{art.prodimg.prodimg.url}}" alt="art.prodimg.imageName}}">
-            {% endif %}</td>
-            <th>{{art.prodName}}</th>
-            <td>{{art.illustrator}}</td>
-            <td>{{art.prodPrice}}</td>
-            <td><button><a href="/art/{{art.id}}/view">View More</a></button></td>
-        </tr>
-    {% endfor %}
-</table>
-{%endblock%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
+    <title>Dragons Edge Creations</title>
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div>
+        {% if messages %}
+        <section class='messages'>
+            {% for message in messages %}
+            <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </div>
+    <main>
+        <table>
+            {% for art in arts %}
+                <tr>
+                    <td>{% if art.prodimg.prodimg == 'default.jpg' %}
+                        Image Coming Soon
+                    {% else %}
+                    <img src="{{art.prodimg.prodimg.url}}" alt="art.prodimg.imageName}}">
+                    {% endif %}</td>
+                    <th>{{art.prodName}}</th>
+                    <td>{{art.illustrator}}</td>
+                    <td>{{art.prodPrice}}</td>
+                    <td><button><a href="/art/{{art.id}}/view">View More</a></button></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+        <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+    </footer>
+</body>
+</html>

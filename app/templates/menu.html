@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/uc/">Portfolio</a>
+    <a href="/books/">Books</a>
+    <a href="/art/">Art</a>
+    <a href="/uc/">Blog</a>
+    <a href="/uc/">Services</a>
+    <a href="/uc/">Contact</a>
+    <a href="/theAdmin/"><img src="{% static 'images/dragonIcon.jpg'%}" alt="Logo Image" id="admin"></a>
+    {% endblock menu %}
+</body>
+</html>

@@ -1,41 +1,55 @@
-{% extends "base.html" %}
 {% load static %}
-{% block content %}
-<nav>
-    <a href="/theAdmin/products/">Products</a>
-    <a href="/theAdmin/events/">Events</a>
-    <a href="/theAdmin/customers/">Customers</a>
-    <a href="#">Edit Profile</a>
-    <a href="#">Login to Blog</a>
-    <button><a href="/logout/">Logout</a></button>
-</nav>
-<div>
-    {% if messages %}
-    <section class='messages'>
-        {% for message in messages %}
-        <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
-        {% endfor %}
-    </section>
-    {% endif %}
-</div>
-<table>
-    <tr>
-        <th>Product Name</th>
-        <th>Book</th>
-        <th>Art</th>
-        <th>Actions</th>
-    </tr>
-    {% for prod in product %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
+    <title>Dragons Edge Creations</title>
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+        {% block adminMenu %} {% include 'admin/adminMenu.html' %} {% endblock %}
+    </header>
+    <div>
+        {% if messages %}
+        <section class='messages'>
+            {% for message in messages %}
+            <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </div><table>
         <tr>
-            <td>{{prod.prodName}}</td>
-            <td>{% if prod.prodType == 0 %}
-                Yes
-            {% endif %}</td>
-            <td>{% if prod.prodType == 1 %}
-                Yes
-            {% endif %}</td>
-            <td><a href="/theAdmin/product/{{prod.id}}/edit/">Edit</a> | <a href="/theAdmin/product/{{prod.id}}/edit/">Add Image</a> | <a href="/theAdmin/product/{{prod.id}}/delete">Delete Product</a></td>
+            <th>Product Name</th>
+            <th>Book</th>
+            <th>Art</th>
+            <th>Actions</th>
         </tr>
-    {% endfor %}
-</table>
-    {%endblock%}
+        {% for prod in product %}
+            <tr>
+                <td>{{prod.prodName}}</td>
+                <td>{% if prod.prodType == 0 %}
+                    Yes
+                {% endif %}</td>
+                <td>{% if prod.prodType == 1 %}
+                    Yes
+                {% endif %}</td>
+                <td><a href="/theAdmin/product/{{prod.id}}/edit/">Edit</a> | <a href="/theAdmin/product/{{prod.id}}/edit/">Add Image</a> | <a href="/theAdmin/product/{{prod.id}}/delete">Delete Product</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <main>
+        
+    </main>
+    <footer>
+        <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+    </footer>
+</body>
+</html>
