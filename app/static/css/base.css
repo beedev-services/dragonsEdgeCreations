@@ -2,10 +2,10 @@
   background-image: linear-gradient(to bottom right, #313981, #221D46);
 }
 .border01 {
-  border: 3px groove #e0dede;
+  border: 1px solid #8267D5;
 }
 .border02 {
-  border: 5px groove #AFEBA5;
+  border: 5px groove #8267D5;
 }
 .flexrow {
   display: flex;

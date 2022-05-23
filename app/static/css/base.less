@@ -5,16 +5,17 @@
 @wings: #B198F4;
 @dragBody: #0252E9;
 @dragBelly: #AFEBA5;
+@altBorder: #8267D5;
 
 .background {
     background-image: linear-gradient(to bottom right, @blue01, @blue02);
     // background-repeat: no-repeat;
 }
 .border01 {
-    border: 3px groove @bg;
+    border: 1px solid @altBorder;
 }
 .border02 {
-    border: 5px groove @dragBelly;
+    border: 5px groove @altBorder;
 }
 .flexrow {
     display: flex;

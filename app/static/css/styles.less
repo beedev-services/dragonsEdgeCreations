@@ -20,6 +20,20 @@ body {
             width: 95%;
             justify-content: space-evenly;
 
+            span {
+                .flexcolumn();
+                .a();
+                font-size: 1.1em;
+
+                #aboutHide, #portfolioHide, #servicesHide {
+                    display: none;
+
+                    a {
+                        .a();
+                    }
+                }
+            }
+
             a {
                 .a();
             }
@@ -42,6 +56,7 @@ body {
             width: 75%;
             justify-content: space-between;
             margin: 1em;
+            align-items: flex-start;
 
             .bookImg {
                 max-width: 200px;
@@ -59,14 +74,38 @@ body {
     }
     footer {
         .background();
-        .flexrow();
+        .flexcolumn();
         width: 95%;
         .border02();
 
-        .border {
-            width: 200px;
-            .border01();
-            margin: .2em;
+        .social {
+            .flexrow();
+
+            a {
+                .a();
+                .flexrow();
+
+                img {
+                    width: 30px;
+                    padding: .5em;
+                }
+            }
+            h4 {
+                .flexrow();
+                color: @links;
+                font-size: 1em;
+                margin: .5em 1em;
+    
+                a {
+                    .a();
+                    .flexrow();
+    
+                    img {
+                        width: 30px;
+                        padding: .5em;
+                    }
+                }
+            }
         }
     }
 }

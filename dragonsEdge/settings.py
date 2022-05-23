@@ -15,7 +15,7 @@ import os
 from environ import Env
 env = Env()
 env.read_env()
-from .env import KEY
+# from dragonsEdge.env import KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,9 +28,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://dragonsedgecreations.com']
+# ALLOWED_HOSTS = ['https://dragonsedgecreations.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,18 +81,36 @@ WSGI_APPLICATION = 'dragonsEdge.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'DB',
-#         'USER': 'DB_USER',
-#         'PASSWORD': 'DB_PASSWORD',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'DB',
+        'NAME': 'dragons4_dragons',
+        # 'USER': 'DB_USER',
+        'USER': 'root',
+        # 'PASSWORD': 'DB_PASSWORD',
+        'PASSWORD': 'HoneyBee#4',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         # 'NAME': 'DB',
+#         'NAME': 'dragons4_dragons',
+#         # 'USER': 'DB_USER',
+#         'USER': 'root',
+#         # 'PASSWORD': 'DB_PASSWORD',
+#         'PASSWORD': 'HoneyBee#4',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }

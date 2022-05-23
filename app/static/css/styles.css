@@ -2,10 +2,10 @@
   background-image: linear-gradient(to bottom right, #313981, #221D46);
 }
 .border01 {
-  border: 3px groove #e0dede;
+  border: 1px solid #8267D5;
 }
 .border02 {
-  border: 5px groove #AFEBA5;
+  border: 5px groove #8267D5;
 }
 .flexrow {
   display: flex;
@@ -54,10 +54,10 @@ body header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 5px groove #AFEBA5;
+  border: 5px groove #8267D5;
 }
 body header .border {
-  border: 3px groove #e0dede;
+  border: 1px solid #8267D5;
   margin: 0.2em;
 }
 body header nav {
@@ -67,6 +67,38 @@ body header nav {
   align-items: center;
   width: 95%;
   justify-content: space-evenly;
+}
+body header nav span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #D7D8DA;
+  padding: 0.5em;
+  font-size: 1.2em;
+  font-size: 1.1em;
+}
+body header nav span #admin {
+  width: 50px;
+}
+body header nav span #aboutHide,
+body header nav span #portfolioHide,
+body header nav span #servicesHide {
+  display: none;
+}
+body header nav span #aboutHide a,
+body header nav span #portfolioHide a,
+body header nav span #servicesHide a {
+  text-decoration: none;
+  color: #D7D8DA;
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+body header nav span #aboutHide a #admin,
+body header nav span #portfolioHide a #admin,
+body header nav span #servicesHide a #admin {
+  width: 50px;
 }
 body header nav a {
   text-decoration: none;
@@ -106,6 +138,7 @@ body main .row {
   width: 75%;
   justify-content: space-between;
   margin: 1em;
+  align-items: flex-start;
 }
 body main .row .bookImg {
   max-width: 200px;
@@ -122,14 +155,58 @@ body main .row h3 {
 body footer {
   background-image: linear-gradient(to bottom right, #313981, #221D46);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 95%;
-  border: 5px groove #AFEBA5;
+  border: 5px groove #8267D5;
 }
-body footer .border {
-  width: 200px;
-  border: 3px groove #e0dede;
-  margin: 0.2em;
+body footer .social {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body footer .social a {
+  text-decoration: none;
+  color: #D7D8DA;
+  padding: 0.5em;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body footer .social a #admin {
+  width: 50px;
+}
+body footer .social a img {
+  width: 30px;
+  padding: 0.5em;
+}
+body footer .social h4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #D7D8DA;
+  font-size: 1em;
+  margin: 0.5em 1em;
+}
+body footer .social h4 a {
+  text-decoration: none;
+  color: #D7D8DA;
+  padding: 0.5em;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body footer .social h4 a #admin {
+  width: 50px;
+}
+body footer .social h4 a img {
+  width: 30px;
+  padding: 0.5em;
 }
