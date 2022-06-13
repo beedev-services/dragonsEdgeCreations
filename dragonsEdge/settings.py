@@ -105,12 +105,9 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'mysql.connector.django',
-#         # 'NAME': 'DB',
 #         'NAME': 'dragons4_dragons',
-#         # 'USER': 'DB_USER',
-#         'USER': 'root',
-#         # 'PASSWORD': 'DB_PASSWORD',
-#         'PASSWORD': 'HoneyBee#4',
+#         'USER': 'dragons4_root',
+#         'PASSWORD': 'CopperTone#21',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }
