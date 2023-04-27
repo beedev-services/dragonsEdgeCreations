@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/adminStyles.css'%}">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.jpg' %}" />
     <title>Dragons Edge Creations</title>
 </head>
 <body>
     <header>
-        <img src="{% static 'images/header.jpg' %}" alt="Header Image" class='border'>
+        <h1>Dragons Edge Admin</h1>
         <nav>
-            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+            {% block adminMenu %} {% include 'admin/adminMenu.html' %} {% endblock %}
         </nav>
-        {% block adminMenu %} {% include 'admin/adminMenu.html' %} {% endblock %}
     </header>
+
     <div>
         {% if messages %}
         <section class='messages'>
@@ -27,124 +27,7 @@
         {% endif %}
     </div>
     <main>
-        <div class="row">
-            <div class="column">
-                <h2>Add Past and Upcoming Events</h2>
-                <form action='/theAdmin/event/create/' method='post'>
-                    {% csrf_token %}
-                    <section>
-                        <label for="eventName">Event Name: </label>
-                        <input type="text" name="eventName">
-                    </section>
-                    <section>
-                        <label for="date">Event Date: </label>
-                        <input type="date" name="date">
-                    </section>
-                    <section>
-                        <label for="details">Details: </label>
-                        <textarea name="details"cols="30" rows="10"></textarea>
-                    </section>
-                    <section>
-                        <label for="location">Location: </label>
-                        <input type="text" name="location">
-                    </section>
-                    <section>
-                        <label for="eventStatus">Current or Past Event: </label>
-                        <select name="eventStatus">
-                            <option value="0">Upcoming Event</option>
-                            <option value="1">Past Event</option>
-                        </select>
-                    </section>
-                    <button>Add Event</button>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <h2>Create the Item Format (Hardcover, Softcover)</h2>
-                <form action="/theAdmin/format/create/" method='post'>
-                    {% csrf_token %}
-                    <section>
-                        <label for="medium">Format: </label>
-                        <input type="text" name="medium">
-                    </section>
-                    <button>Add Product Format</button>
-                </form>
-            </div>
-            <div class="column">
-                <h2>Create the item Language</h2>
-                <form action="/theAdmin/language/create/" method='post'>
-                    {% csrf_token %}
-                    <section>
-                        <label for="lang">Language: </label>
-                        <input type="text" name="lang">
-                    </section>
-                    <button>Add Language</button>
-                </form>
-            </div>
-            <div class="column">
-                <h2>Add Art or Books</h2>
-                <h3>** = Required Items</h3>
-                <form action="/theAdmin/product/create/" method='post'>
-                    {% csrf_token %}
-                    <section>
-                        <label for="prodName">Item Name: <span>**</span></label>
-                        <input type="text" name="prodName">
-                    </section>
-                    <section>
-                        <label for="prodDetails">Item Details: <span>**</span></label>
-                        <textarea name="prodDetails" cols="30" rows="10"></textarea>
-                    </section>
-                    <section>
-                        <label for="author">Author: </label>
-                        <input type="text" name="author">
-                    </section>
-                    <section>
-                        <label for="illustrator">Illustrator (of book or art): </label>
-                        <input type="text" name="illustrator">
-                    </section>
-                    <section>
-                        <label for="isbn">Item Number: </label>
-                        <input type="text" name="isbn">
-                    </section>
-                    <section>
-                        <label for="quantity">Quantity (default is 1): </label>
-                        <input type="text" name="quantity" value='1'>
-                    </section>
-                    <section>
-                        <label for="prodPrice">Item Price (default is TBD):</label>
-                        <input type="text" name="prodPrice">
-                    </section>
-                    <section>
-                        <label for="prodType">Book or Art (default is book): </label>
-                        <select name="prodType">
-                            <option value=''>Please Select</option>
-                            <option value="0">Book</option>
-                            <option value="1">Art</option>
-                        </select>
-                    </section>
-                    <section>
-                        <label for="prodMedium">Item format: </label>
-                        <select name="prodMedium">
-                            <option value=''>Please Select</option>
-                            {% for medium in mediums %}
-                                <option value="{{medium.id}}">{{medium.medium}}</option>
-                            {% endfor %}
-                        </select>
-                    </section>
-                    <section>
-                        <label for="prodLang">Book Language: </label>
-                        <select name="prodLang">
-                            <option value=''>Please Select</option>
-                            {% for lang in langs %}
-                                <option value="{{lang.id}}">{{lang.lang}}</option>
-                            {% endfor %}
-                        </select>
-                    </section>
-                    <button>Add Item</button>
-                </form>
-            </div>
-        </div>
+        
     </main>
     <footer>
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}

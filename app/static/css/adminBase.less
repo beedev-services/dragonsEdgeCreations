@@ -1,0 +1,26 @@
+@bg: #e0dede;
+@blue01: #313981;
+@blue02: #221D46;
+@links: #D7D8DA;
+@wings: #B198F4;
+@dragBody: #0252E9;
+@dragBelly: #AFEBA5;
+@altBorder: #8267D5;
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.box {
+    border: 2px groove @wings;
+    background-image: linear-gradient(to bottom right, @blue01, @blue02);
+    box-shadow: .10em .25em .75em @wings;
+}

@@ -1,0 +1,17 @@
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  border: 2px groove #B198F4;
+  background-image: linear-gradient(to bottom right, #313981, #221D46);
+  box-shadow: 0.1em 0.25em 0.75em #B198F4;
+}
